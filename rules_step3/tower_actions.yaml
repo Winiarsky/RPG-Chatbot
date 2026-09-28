@@ -1,0 +1,30 @@
+# Autorski dodatek do demonstracyjnej wieży, nie tekst podręcznika.
+# DC, wybór Athletics, koszt minuty i hałas to decyzje TEGO scenariusza.
+# Kopia zostaje przypięta do kampanii; późniejsza edycja pliku nie zmienia zapisu.
+schema_version: 1
+id: tower_actions_v1
+scenario_id: old_tower
+ruleset_id: dnd_2024_srd_5_2_1
+actions:
+  - id: force_door
+    label: Wyważ drzwi
+    kind: force_door
+    scene_id: tower_entrance
+    door_id: tower_door
+    check:
+      kind: ability_check
+      ability: strength
+      skill: athletics
+      dc: 15
+      dc_origin: 'Autorski scenariusz tower_actions_v1, force_door'
+      advantage_sources: []
+      disadvantage_sources: []
+    # Koszt dotyczy zarówno sukcesu, jak i porażki.
+    elapsed_seconds: 60
+    noise_events: 1
+  - id: observe_scene
+    label: Rozejrzyj się (bez testu)
+    kind: observe_scene
+    scene_id: tower_entrance
+    elapsed_seconds: 0
+    noise_events: 0

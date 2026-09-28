@@ -1,0 +1,13 @@
+source:
+  document_id: my_rules_example
+  title: Przykład importu — NIE zasady D&D
+  ruleset_id: test_only
+  version: '1'
+  language: pl
+  kind: rules
+  source_url: ''
+  license: Własny materiał testowy
+  attribution: Przykład techniczny projektu RPG DM
+  coverage: Materiał do sprawdzenia importu Markdown, bez reguł gry.
+file: my_rules.md
+format: markdown

@@ -1,0 +1,32 @@
+# Uproszczona karta testowa: nie jest kompletną kartą postaci D&D 2024.
+# Nie sprawdzamy jeszcze budżetu tworzenia postaci, cech klasowych ani wyposażenia.
+id: pc_torin
+name: Torin
+character_class: Fighter
+level: 1
+hp_current: 12
+hp_max: 12
+armor_class: 16
+speed_ft: 30
+proficiency_bonus: 2
+abilities:
+  strength: 16
+  dexterity: 12
+  constitution: 14
+  intelligence: 10
+  wisdom: 12
+  charisma: 8
+skill_proficiencies:
+  - athletics
+  - perception
+inventory:
+  - id: longsword
+    name: Długi miecz
+    quantity: 1
+  - id: chain_mail
+    name: Kolczuga
+    quantity: 1
+  - id: torch
+    name: Pochodnia
+    quantity: 3
+conditions: []

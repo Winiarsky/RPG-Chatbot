@@ -1,0 +1,296 @@
+[
+  {
+    "id": "q01",
+    "question": "Jak działa przewaga?",
+    "expected_sections": [
+      "advantage"
+    ],
+    "answer_review": [
+      "2k20 i wyższa kość; nie +2."
+    ]
+  },
+  {
+    "id": "q02",
+    "question": "Jak działa utrudnienie?",
+    "expected_sections": [
+      "advantage"
+    ],
+    "answer_review": [
+      "2k20 i niższa kość."
+    ]
+  },
+  {
+    "id": "q03",
+    "question": "Czy dwie przewagi dają trzy kości?",
+    "expected_sections": [
+      "advantage"
+    ],
+    "answer_review": [
+      "Przewagi nie kumulują się w dodatkowe kości."
+    ]
+  },
+  {
+    "id": "q04",
+    "question": "Dwie przewagi i jedno utrudnienie: ile kości?",
+    "expected_sections": [
+      "advantage"
+    ],
+    "answer_review": [
+      "Efekty znoszą się, 1k20; nie liczymy bilansu źródeł."
+    ]
+  },
+  {
+    "id": "q05",
+    "question": "Przerzut przy przewadze: mogę przerzucić obie kości?",
+    "expected_sections": [
+      "advantage"
+    ],
+    "answer_review": [
+      "Jedna wybrana kość."
+    ]
+  },
+  {
+    "id": "q06",
+    "question": "Kiedy dodaję premię biegłości do testu cechy?",
+    "expected_sections": [
+      "check_proficiency"
+    ],
+    "answer_review": [
+      "Odpowiednia umiejętność lub narzędzie i posiadana biegłość."
+    ]
+  },
+  {
+    "id": "q07",
+    "question": "Mam dwie pasujące biegłości. Czy mogę dodać premię dwa razy?",
+    "expected_sections": [
+      "proficiency_once"
+    ],
+    "answer_review": [
+      "Nie; nie mylić z mnożeniem przez Expertise."
+    ]
+  },
+  {
+    "id": "q08",
+    "question": "Jak działa Expertise?",
+    "expected_sections": [
+      "expertise"
+    ],
+    "answer_review": [
+      "Podwojenie premii dla wybranej biegłości; brak wielokrotnego podwajania."
+    ]
+  },
+  {
+    "id": "q09",
+    "question": "Czy akcja Pomoc daje +2?",
+    "expected_sections": [
+      "help"
+    ],
+    "answer_review": [
+      "Przewaga zamiast +2; wybór wariantu akcji."
+    ]
+  },
+  {
+    "id": "q10",
+    "question": "Czy mogę pomagać w teście bez odpowiedniej biegłości?",
+    "expected_sections": [
+      "help"
+    ],
+    "answer_review": [
+      "Wariant ability check wymaga wyboru własnej biegłości skill/tool."
+    ]
+  },
+  {
+    "id": "q11",
+    "question": "Jaki zasięg ma Help przy pomaganiu w ataku?",
+    "expected_sections": [
+      "help"
+    ],
+    "answer_review": [
+      "Wróg w odległości 5 stóp od pomagającego."
+    ]
+  },
+  {
+    "id": "q12",
+    "question": "Do kiedy działa pomoc w teście cechy?",
+    "expected_sections": [
+      "help"
+    ],
+    "answer_review": [
+      "Do początku następnej tury pomagającego, jeśli sojusznik nie wykorzysta jej wcześniej."
+    ]
+  },
+  {
+    "id": "q13",
+    "question": "Czy każdy ma dowolną akcję dodatkową?",
+    "expected_sections": [
+      "bonus_actions"
+    ],
+    "answer_review": [
+      "Tylko przyznana przez konkretną funkcję, czar lub zdolność."
+    ]
+  },
+  {
+    "id": "q14",
+    "question": "Ile akcji dodatkowych mam w turze?",
+    "expected_sections": [
+      "bonus_actions"
+    ],
+    "answer_review": [
+      "Jedną; nie mylić z dodatkowymi akcjami ze zdolności."
+    ]
+  },
+  {
+    "id": "q15",
+    "question": "Kiedy odzyskuję reakcję?",
+    "expected_sections": [
+      "reactions"
+    ],
+    "answer_review": [
+      "Na początku swojej następnej tury, nie po końcu rundy."
+    ]
+  },
+  {
+    "id": "q16",
+    "question": "Czy reakcja jest przed czy po wyzwalaczu?",
+    "expected_sections": [
+      "reactions"
+    ],
+    "answer_review": [
+      "Domyślnie po; opis reakcji może stanowić wyjątek."
+    ]
+  },
+  {
+    "id": "q17",
+    "question": "Czy naturalna 20 przy ataku ignoruje klasę pancerza?",
+    "expected_sections": [
+      "attack_natural_rolls"
+    ],
+    "answer_review": [
+      "Trafia; nie dopowiadać szczegółów obrażeń krytycznych nieobecnych w pakiecie."
+    ]
+  },
+  {
+    "id": "q18",
+    "question": "Czy naturalna 1 przy ataku trafia z dużą premią?",
+    "expected_sections": [
+      "attack_natural_rolls"
+    ],
+    "answer_review": [
+      "Pudło niezależnie od premii i AC."
+    ]
+  },
+  {
+    "id": "q19",
+    "question": "Czy wynik testu równy DC oznacza sukces?",
+    "expected_sections": [
+      "d20_tests"
+    ],
+    "answer_review": [
+      "Równy lub większy, z uwzględnieniem modyfikatorów."
+    ]
+  },
+  {
+    "id": "q20",
+    "question": "Czy muszę rzucać na każdą prostą czynność?",
+    "expected_sections": [
+      "ability_checks"
+    ],
+    "answer_review": [
+      "Znacząca porażka, niepewny i interesujący wynik."
+    ]
+  },
+  {
+    "id": "q21",
+    "question": "Kto ustala DC?",
+    "expected_sections": [
+      "difficulty_class"
+    ],
+    "answer_review": [
+      "Reguły podają niektóre DC, ostatecznie GM; nie przydzielać DC konkretnej sceny."
+    ]
+  },
+  {
+    "id": "q22",
+    "question": "Jakie DC ma średnio trudny test według tabeli?",
+    "expected_sections": [
+      "difficulty_class"
+    ],
+    "answer_review": [
+      "Tabela: medium 15."
+    ]
+  },
+  {
+    "id": "q23",
+    "question": "Czy wyjątek zdolności wygrywa z regułą ogólną?",
+    "expected_sections": [
+      "exceptions"
+    ],
+    "answer_review": [
+      "Wyjątek wygrywa; nie mylić ze sprzecznością źródeł."
+    ]
+  },
+  {
+    "id": "q24",
+    "question": "Jak zaokrąglać ułamki?",
+    "expected_sections": [
+      "round_down"
+    ],
+    "answer_review": [
+      "W dół, chyba że reguła mówi inaczej."
+    ]
+  },
+  {
+    "id": "q25",
+    "question": "Co przerywa ukrycie Hide?",
+    "expected_sections": [
+      "hide"
+    ],
+    "answer_review": [
+      "Głośniej niż szept, znalezienie, rzut ataku lub czar z komponentem werbalnym."
+    ]
+  },
+  {
+    "id": "q26",
+    "question": "Czy mogę wykonać czynność spoza listy akcji?",
+    "expected_sections": [
+      "improvised_actions"
+    ],
+    "answer_review": [
+      "GM ocenia wykonalność i ewentualny test."
+    ]
+  },
+  {
+    "id": "q27",
+    "question": "Czy Heroic Inspiration pozwala zachować stary wynik?",
+    "expected_sections": [
+      "heroic_inspiration"
+    ],
+    "answer_review": [
+      "Należy użyć nowego wyniku."
+    ]
+  },
+  {
+    "id": "q28",
+    "question": "Ile obrażeń zadaje Fireball?",
+    "expected_sections": [],
+    "answer_review": [
+      "insufficient: brak opisu czaru w pakiecie startowym; nie odpowiadać z pamięci."
+    ]
+  },
+  {
+    "id": "q29",
+    "question": "Jakie DC mają drzwi w naszej wieży?",
+    "expected_sections": [],
+    "answer_review": [
+      "insufficient: biblioteka nie zna scenariusza; tabela DC nie rozstrzyga tych drzwi."
+    ]
+  },
+  {
+    "id": "q30",
+    "question": "Ile sekund kosztuje pukanie do Marty?",
+    "expected_sections": [],
+    "answer_review": [
+      "insufficient: czas i NPC pochodzą ze scenariusza, którego tu nie ma."
+    ]
+  }
+]

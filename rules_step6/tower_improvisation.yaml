@@ -1,0 +1,29 @@
+# PRYWATNE USTALENIA MG. Dodatek do autorskiej przygody, nie zasady D&D.
+# Zmiana względem kroku 5: Marta potrafi odblokować zacinające się drzwi od środka.
+# Gracz nie zostaje automatycznie przeniesiony po zaproszeniu.
+version: 1
+id: tower_improvisation_v1
+scenario_id: tower_story
+signals:
+  - id: signal_tower_door
+    label: Nawiąż kontakt przy drzwiach wieży
+    scene_id: tower_entrance
+    door_id: tower_door
+    inside_scene_id: vestibule
+    responder_id: marta
+    response_mode: open
+    can_hear: true
+    can_open_from_inside: true
+    max_noise_to_open: 1
+    first_reply: >
+      „Jestem Marta. Pilnuję wieży pod nieobecność latarnika.
+      Wejdź, nie stój na deszczu. Czego potrzebujesz?”
+    repeat_reply: >
+      „Znów ty? Wejście jest otwarte. Powiedz, czego potrzebujesz.”
+    cautious_reply: >
+      „Marta z tej strony. Słyszę cię. Powiedz najpierw, w jakiej sprawie przychodzisz.”
+    silent_text: Sygnał wybrzmiewa, lecz nie słyszysz odpowiedzi. Drzwi nie zmieniają położenia.
+    elapsed_seconds: 6
+    public_hint: >
+      Niewymagający siły sygnał do wnętrza: pukanie lub zawołanie, aby nawiązać kontakt.
+      Nie oznacza wejścia, wyważania ani gwarantowanej odpowiedzi.

@@ -1,0 +1,29 @@
+# Autorska scena demonstracyjna. Nie pochodzi z podręcznika D&D.
+schema_version: 1
+id: old_tower
+title: Stara wieża — demo
+ruleset_id: dnd_2024_srd_5_2_1
+start_scene_id: tower_entrance
+scenes:
+  - id: tower_entrance
+    name: Wejście do starej wieży
+    # Opis stały NIE zawiera stanu drzwi, który może się zmienić.
+    public_description: >
+      Stoisz przed starą kamienną wieżą przy leśnym trakcie.
+      Pada deszcz. Obok wejścia wisi zgaszona latarnia.
+    doors:
+      - id: tower_door
+        name: Drewniane drzwi wieży
+        initially_open: false
+        visible_when_closed: >
+          Drzwi są zamknięte. Mokre deski i żelazne okucia
+          zasłaniają widok wnętrza.
+        visible_when_open: >
+          Drzwi są otwarte. Z progu widać pusty przedsionek
+          i schody prowadzące w górę.
+    gm_only:
+      - id: cache_location
+        text: >
+          Za luźnym kamieniem na piętrze ukryto mosiężny klucz
+          z symbolem kruka. Ta informacja nie trafia do narratora
+          w etapie 2, także po otwarciu drzwi.

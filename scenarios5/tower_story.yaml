@@ -1,0 +1,179 @@
+# Autorska mini-przygoda do prototypu. Nie jest oficjalną przygodą D&D.
+# Ten plik zawiera SEKRETY MG; nie udostępniaj go graczom.
+version: 1
+id: tower_story_v1
+scenario:
+  schema_version: 1
+  id: tower_story
+  title: Wieża zaginionego latarnika
+  ruleset_id: dnd_2024_srd_5_2_1
+  start_scene_id: tower_entrance
+  scenes:
+    - id: tower_entrance
+      name: Przed starą wieżą
+      public_description: >
+        Deszcz zacina po kamieniach starej wieży. Przyszedłeś wyjaśnić zniknięcie
+        latarnika. Przy wejściu wisi zgaszona latarnia i tabliczka „Przedsionek”.
+      doors:
+        - id: tower_door
+          name: Drzwi wieży
+          initially_open: false
+          visible_when_closed: >
+            Spęczniałe drewno blokuje drzwi. Przez szczelinę przebija światło;
+            nie widzisz, kto jest w środku.
+          visible_when_open: >
+            Drzwi są otwarte. Za progiem widać oświetlony przedsionek.
+      gm_only:
+        - id: author_note
+          text: >
+            Pod fundamentem leży zapieczętowana skrzynia.
+            Nie jest elementem obsługiwanych odkryć tej mini-przygody.
+    - id: vestibule
+      name: Przedsionek
+      public_description: >
+        Pod ścianą stoi ława. Obok dogasającego piecyka siedzi strażniczka Marta.
+        Schody oznaczone napisem „Archiwum” prowadzą na piętro. Na zewnątrz
+        można wrócić przez drzwi wejściowe.
+      doors: []
+      gm_only: []
+    - id: archive
+      name: Archiwum
+      public_description: >
+        Wąskie okno oświetla zakurzone biurko. Leży na nim dziennik latarnika;
+        z miejsca, w którym stoisz, nie można odczytać wpisów. Schody prowadzą
+        z powrotem do przedsionka.
+      doors: []
+      gm_only: []
+mechanics:
+  schema_version: 1
+  id: tower_story_mechanics_v1
+  scenario_id: tower_story
+  ruleset_id: dnd_2024_srd_5_2_1
+  actions:
+    - id: force_door
+      label: Wyważ drzwi wieży
+      kind: force_door
+      scene_id: tower_entrance
+      door_id: tower_door
+      check:
+        kind: ability_check
+        ability: strength
+        skill: athletics
+        dc: 15
+        dc_origin: Autorski scenariusz tower_story_v1
+        advantage_sources: []
+        disadvantage_sources: []
+      elapsed_seconds: 60
+      noise_events: 1
+    - id: observe_entrance
+      label: Rozejrzyj się przed wieżą
+      kind: observe_scene
+      scene_id: tower_entrance
+    - id: observe_vestibule
+      label: Rozejrzyj się w przedsionku
+      kind: observe_scene
+      scene_id: vestibule
+    - id: observe_archive
+      label: Rozejrzyj się w archiwum
+      kind: observe_scene
+      scene_id: archive
+facts:
+  - id: journal_hint
+    text: Marta wskazała, że w archiwum został dziennik latarnika z wpisem z ostatniej nocy.
+  - id: journal_revelation
+    text: >
+      W dzienniku latarnik zapisał, że opuszcza wieżę dobrowolnie, aby spotkać się
+      z przewoźnikiem przy Starym Moście. Ostatni wpis kończy się rysunkiem czarnego koła.
+  - id: ferryman_mark
+    text: Marta rozpoznała czarne koło jako znak przewoźnika zwanego Kosem.
+npcs:
+  - id: marta
+    name: Marta
+    scene_id: vestibule
+    public_description: Strażniczka w przemoczonym płaszczu suszy rękawice przy piecyku.
+    gm_notes: >
+      Marta pilnuje wieży pod nieobecność latarnika. Nie jest przeciwnikiem.
+      Nie zna treści dziennika, dopóki bohater nie opowie o odkrytym wpisie.
+      Pamięta rozmowy. Nie przyznawaj magicznych nagród ani zgody na nieobsługiwane testy.
+    default_beat_id: other
+    beats:
+      - id: hello_first
+        topic: Powitanie lub przedstawienie się przy pierwszej rozmowie.
+        requires_met: false
+        reply: „Jestem Marta. Pilnuję wieży, dopóki latarnik nie wróci. Czego szukasz?”
+      - id: hello_again
+        topic: Powitanie przy kolejnym spotkaniu; pytanie, czy pamięta rozmówcę.
+        requires_met: true
+        reply: „Pamiętam cię. Czy udało ci się czegoś dowiedzieć?”
+      - id: keeper
+        topic: Pytanie o latarnika, jego zniknięcie, dziennik lub cel poszukiwań.
+        reply: „Nie widziałam jego wyjścia. W archiwum został dziennik. Zacznij od ostatniego wpisu.”
+        reveals: [journal_hint]
+      - id: noise_loud
+        topic: Pytanie o hałas, wyważenie drzwi lub przeprosiny za łomot.
+        min_noise: 2
+        reply: „Słyszałam ten łomot. Następnym razem najpierw zapukaj.”
+      - id: noise_quiet
+        topic: Pytanie o hałas, drzwi lub przeprosiny za wejście.
+        max_noise: 1
+        reply: „Po deszczu drzwi się zacinają. Trzeba będzie je naprawić.”
+      - id: share_journal
+        topic: Bohater wyraźnie opowiada o przeczytanym dzienniku lub pyta o odkryty znak czarnego koła.
+        requires_facts: [journal_revelation]
+        reply: „Czarne koło? Tak znaczy swoje przesyłki Kos, przewoźnik. To już jakiś trop.”
+        reveals: [ferryman_mark]
+      - id: other
+        topic: Inny temat, brak pasującej odpowiedzi lub próba wydobycia nieodkrytych informacji.
+        reply: „Nie mam na ten temat nic pewnego do dodania.”
+actions:
+  - id: enter_tower
+    label: Wejdź do przedsionka
+    kind: move
+    scene_id: tower_entrance
+    target_id: vestibule
+    required_open_door: tower_door
+    aliases: [Wchodzę do wieży, Wchodzę do przedsionka]
+    result_text: Przekraczasz próg i wchodzisz do przedsionka.
+    elapsed_seconds: 10
+  - id: leave_tower
+    label: Wyjdź przed wieżę
+    kind: move
+    scene_id: vestibule
+    target_id: tower_entrance
+    required_open_door: tower_door
+    aliases: [Wychodzę przed wieżę, Wracam przed wieżę]
+    result_text: Wracasz przed wieżę.
+    elapsed_seconds: 10
+  - id: go_archive
+    label: Wejdź do archiwum
+    kind: move
+    scene_id: vestibule
+    target_id: archive
+    aliases: [Idę do archiwum, Wchodzę do archiwum]
+    result_text: Wchodzisz po schodach do archiwum.
+    elapsed_seconds: 10
+  - id: return_vestibule
+    label: Wróć do przedsionka
+    kind: move
+    scene_id: archive
+    target_id: vestibule
+    aliases: [Wracam do przedsionka, Schodzę do przedsionka]
+    result_text: Schodzisz z powrotem do przedsionka.
+    elapsed_seconds: 10
+  - id: talk_marta
+    label: Porozmawiaj z Martą
+    kind: talk
+    scene_id: vestibule
+    target_id: marta
+    aliases: [Witam Martę, Pytam Martę o latarnika, Pytam Martę o hałas, Opowiadam Marcie o dzienniku]
+    result_text: Zwracasz się do Marty.
+    elapsed_seconds: 30
+  - id: read_journal
+    label: Podejdź do biurka i przeczytaj dziennik
+    kind: inspect
+    scene_id: archive
+    target_id: journal
+    aliases: [Czytam dziennik, Przeglądam dziennik latarnika]
+    result_text: Podchodzisz do biurka i odczytujesz ostatni wpis w dzienniku.
+    reveals: [journal_revelation]
+    elapsed_seconds: 60

@@ -1,0 +1,20 @@
+source:
+  document_id: srd521_starter
+  title: System Reference Document 5.2.1 — selected excerpts
+  ruleset_id: dnd_2024_srd_5_2_1
+  version: 5.2.1
+  language: en
+  kind: rules
+  source_url: https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.1.pdf
+  license: CC-BY-4.0
+  attribution: This work includes material from the System Reference Document 5.2.1
+    (“SRD 5.2.1”) by Wizards of the Coast LLC, available at https://www.dndbeyond.com/srd.
+    The SRD 5.2.1 is licensed under the Creative Commons Attribution 4.0 International
+    License, available at https://creativecommons.org/licenses/by/4.0/legalcode.
+  coverage: '16 selected rule excerpts: exceptions, rounding, D20/ability checks/DC,
+    natural attack rolls, advantage, proficiency, actions, reactions, Expertise, Help,
+    Inspiration and Hide. NOT the full SRD. Formatting and section boundaries adapted;
+    no scenario rules.'
+file: sections.json
+format: sections_json
+sha256: bedd03ce92034dfa36ece69c002e75a42b3af9170dad35a87459e67044e98198

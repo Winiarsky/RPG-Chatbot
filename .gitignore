@@ -1,8 +1,32 @@
-.venv/
+# Local configuration and secrets
 .env
 .env.*
 !.env.example
+.streamlit/secrets.toml
+
+# Local saves, imported library, backups and locks
+/data/
+.rpg4_locks/
+/materials7a/full/
+/evals7a/*REPORT*.json
+*.sqlite3
+*.sqlite3-*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# Python and tooling artifacts
+.venv/
+venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
-.streamlit/secrets.toml
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+.DS_Store

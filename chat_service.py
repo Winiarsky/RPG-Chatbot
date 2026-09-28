@@ -145,7 +145,7 @@ class ChatService:
                 timeout=settings.request_timeout,
                 max_retries=1,
                 max_tokens=settings.max_output_tokens,
-                use_responses_api=False,
+                use_responses_api=True,
             )
 
     def reply(self, history: Sequence[ChatMessage]) -> str:
