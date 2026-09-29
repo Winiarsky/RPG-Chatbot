@@ -7,7 +7,7 @@ from tempfile import TemporaryDirectory
 class TestWriter:
     """Wyłącznie test przepływu i odwołań, nie model odpowiadający na zasady."""
     def draft(self, question, hits, ruleset):
-        from library7a.models import AnswerDraft, Claim, EvidenceRef
+        from library.models import AnswerDraft, Claim, EvidenceRef
         if 'Fireball' in question:
             return AnswerDraft(status='insufficient', claims=[],
                 unresolved_questions=['TEST ATRAPY: w pakiecie startowym nie ma opisu tego czaru.'])
@@ -20,8 +20,8 @@ class TestWriter:
 
 class TestConsultant:
     def __init__(self, store, cfg):
-        from library7a.librarian import Librarian
-        from library7a.search import Retriever
+        from library.librarian import Librarian
+        from library.search import Retriever
         self.reader = Librarian(Retriever(store, cfg), TestWriter())
         self.calls = []
 
@@ -34,10 +34,10 @@ class TestConsultant:
 def make_controller(repo, consultant):
     from config import Settings
     from chat_service import ChatService
-    from story5.roles import StoryKeeper
-    from improv6.roles import Narrator
-    from rules7b.roles import GameMaster, Improviser
-    from rules7b.runtime import RulesController
+    from story.roles import StoryKeeper
+    from improvisation.roles import Narrator
+    from rules.roles import GameMaster, Improviser
+    from rules.runtime import RulesController
     t = ChatService(Settings(provider='mock'))
     return RulesController(repo, GameMaster(t), Narrator(t), StoryKeeper(t), Improviser(t), consultant)
 
@@ -51,14 +51,14 @@ def main():
         return 2
     for key in ('LANGSMITH_TRACING', 'LANGCHAIN_TRACING', 'LANGCHAIN_TRACING_V2'):
         os.environ[key] = 'false'
-    from library7a.settings import ROOT, LibrarySettings
-    from library7a.store import LibraryStore
-    from library7a.importers import load_manifest
-    from rules7b.repository import RulesRepository
+    from library.settings import ROOT, LibrarySettings
+    from library.store import LibraryStore
+    from library.importers import load_manifest
+    from rules.repository import RulesRepository
     with TemporaryDirectory(prefix='rpg7b-') as directory:
         cfg = LibrarySettings(db_path=Path(directory)/'library.sqlite3')
         store = LibraryStore(cfg.db_path, create=True)
-        _, chunks, _ = load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+        _, chunks, _ = load_manifest(ROOT/'materials/starter/manifest.yaml')
         store.import_chunks(chunks, reviewed=True)
         repo = RulesRepository(Path(directory)/'game.sqlite3')
         repo.initialize()

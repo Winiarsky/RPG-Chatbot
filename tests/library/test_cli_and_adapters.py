@@ -6,10 +6,10 @@ from dataclasses import replace
 from types import SimpleNamespace
 from pathlib import Path
 import pytest
-from library7a.settings import ROOT,load_library_settings
-from library7a.models import AnswerDraft
-from library7a.search import Retriever
-from library7a.providers import LangChainWriter
+from library.settings import ROOT,load_library_settings
+from library.models import AnswerDraft
+from library.search import Retriever
+from library.providers import LangChainWriter
 
 
 def run_cli(tmp_path,*args):
@@ -26,12 +26,12 @@ def test_cli_init_search_reopen(tmp_path):
 
 
 def test_cli_starter_migration_requires_explicit_replace(tmp_path,monkeypatch):
-    import library7a.importers as importers
-    from library7a.store import LibraryStore
+    import library.importers as importers
+    from library.store import LibraryStore
     store=LibraryStore(tmp_path/'cli.sqlite3',create=True)
     with monkeypatch.context() as patch:
         patch.setattr(importers,'CHUNKER_VERSION','paragraphs-v1')
-        _,old_chunks,_=importers.load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+        _,old_chunks,_=importers.load_manifest(ROOT/'materials/starter/manifest.yaml')
     store.import_chunks(old_chunks,reviewed=True)
     old_revision=store.documents()[0]['revision']
 
@@ -96,11 +96,11 @@ def test_json_text_and_tool_mode_send_only_rules(store,cfg):
 
 
 def test_no_secret_names_in_starter():
-    content=(ROOT/'materials7a/starter/sections.json').read_text(encoding='utf-8')
+    content=(ROOT/'materials/starter/sections.json').read_text(encoding='utf-8')
     assert 'Marta' not in content and 'tower_door' not in content
 
 
 def test_api_embedding_module_does_not_initialize_client_on_import():
     # Import above succeeded with langchain_openai absent: lazy adapter construction.
-    import library7a.providers as p
+    import library.providers as p
     assert hasattr(p,'OpenAIEmbedder')

@@ -14,9 +14,9 @@ def scenario_test():
     from langgraph.checkpoint.sqlite import SqliteSaver  # noqa: F401: sprawdzenie realnej zależności
     from chat_service import ChatService
     from config import Settings
-    from story5.repository import StoryRepository
-    from story5.roles import GameMaster, Narrator, StoryKeeper
-    from story5.runtime import StoryController
+    from story.repository import StoryRepository
+    from story.roles import GameMaster, Narrator, StoryKeeper
+    from story.runtime import StoryController
     root=Path(__file__).resolve().parents[2]
     with TemporaryDirectory(prefix='rpg5-smoke-') as temporary:
         repo=StoryRepository(Path(temporary)/'game.sqlite3')

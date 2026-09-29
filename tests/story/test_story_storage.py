@@ -4,10 +4,10 @@ import pytest
 from pydantic import ValidationError
 from schemas import CharacterState, ScenarioDefinition
 from scenario_loader import load_yaml
-from story5.models import StoryBook, BeatSelection
-from story5.repository import StoryRepository, StoryError, DEFAULT_STORY
-from mechanics3.repository import ActionError
-from agents4.repository import GraphRepository, WorkflowError
+from story.models import StoryBook, BeatSelection
+from story.repository import StoryRepository, StoryError, DEFAULT_STORY
+from mechanics.repository import ActionError
+from agents.repository import GraphRepository, WorkflowError
 from storage import RequestConflict, RevisionConflict
 from .conftest import ROOT, act, open_and_enter
 

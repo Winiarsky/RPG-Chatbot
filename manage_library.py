@@ -3,11 +3,11 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from library7a.settings import load_library_settings,ROOT
-from library7a.store import LibraryStore
-from library7a.importers import load_manifest
-from library7a.search import Retriever,build_embeddings
-from library7a.librarian import Librarian,render_text
+from library.settings import load_library_settings,ROOT
+from library.store import LibraryStore
+from library.importers import load_manifest
+from library.search import Retriever,build_embeddings
+from library.librarian import Librarian,render_text
 
 
 def parser():
@@ -40,13 +40,13 @@ def parser():
     e.add_argument('--llm',action='store_true',help='Wygeneruj odpowiedzi ewaluacyjne; płatne API, bez automatycznej oceny prawdy')
     e.add_argument('--out',type=Path)
     f=sub.add_parser('fetch-srd',help='Pobierz oficjalny PDF 5.2.1, bez API i bez automatycznego indeksowania')
-    f.add_argument('--out',type=Path,default=ROOT/'materials7a/full')
+    f.add_argument('--out',type=Path,default=ROOT/'materials/full')
     return p
 
 
 def fetch_srd(directory):
     from urllib.request import urlopen
-    from library7a.importers import MAX_FILE_BYTES,digest
+    from library.importers import MAX_FILE_BYTES,digest
     import yaml
     url='https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.1.pdf'
     path=directory.resolve(); path.mkdir(parents=True,exist_ok=True)
@@ -63,7 +63,7 @@ def fetch_srd(directory):
     first=PdfReader(BytesIO(raw)).pages[0].extract_text() or ''
     if '5.2.1' not in first or 'Creative Commons' not in first:
         raise ValueError('Nie potwierdzono wersji 5.2.1 w pobranym PDF.')
-    starter,_,_=load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+    starter,_,_=load_manifest(ROOT/'materials/starter/manifest.yaml')
     source=starter.source.model_copy(update={'document_id':'srd521_full',
         'title':'System Reference Document 5.2.1 — full PDF',
         'coverage':'Full official PDF, automatic page extraction; requires manual review of text order and tables.'})
@@ -95,7 +95,7 @@ def main(argv=None):
         fetch_srd(args.out); return 0
     store=LibraryStore(settings.db_path,create=args.cmd in {'init','import'})
     if args.cmd in {'init','import'}:
-        manifest=ROOT/'materials7a/starter/manifest.yaml' if args.cmd=='init' else args.manifest
+        manifest=ROOT/'materials/starter/manifest.yaml' if args.cmd=='init' else args.manifest
         _,chunks,warnings=load_manifest(manifest)
         result=store.import_chunks(chunks,reviewed=args.cmd=='init',replace=getattr(args,'replace',False))
         print(f'{result}: {chunks[0].source.document_id}; fragmenty: {len(chunks)}')
@@ -117,7 +117,7 @@ def main(argv=None):
     if args.cmd=='embeddings' or getattr(args,'mode','lexical')=='hybrid':
         if not args.allow_api:
             raise ValueError('To wywołanie wysyła tekst do API embeddingów. Dodaj --allow-api lub użyj lexical.')
-        from library7a.providers import OpenAIEmbedder
+        from library.providers import OpenAIEmbedder
         embedder=OpenAIEmbedder(settings)
     if args.cmd=='embeddings':
         print(json.dumps(build_embeddings(store,settings,embedder,
@@ -130,14 +130,14 @@ def main(argv=None):
         return 0
     writer=None
     if getattr(args,'llm',False):
-        from library7a.providers import LangChainWriter
+        from library.providers import LangChainWriter
         writer=LangChainWriter(settings)
     if args.cmd=='ask':
         ans=Librarian(retriever,writer).consult(args.question,args.mode,generate=args.llm)
         print(ans.model_dump_json(indent=2) if args.json else render_text(ans)); return 0
     if args.cmd=='eval':
-        from library7a.evaluation import evaluate_retrieval
-        cases_path=ROOT/'evals7a/cases.json'
+        from library.evaluation import evaluate_retrieval
+        cases_path=ROOT/'evals/cases.json'
         result=evaluate_retrieval(retriever,cases_path,args.mode,args.top_k)
         if args.llm:
             result['generated_answers']=[]

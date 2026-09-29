@@ -10,7 +10,7 @@ from pydantic import ValidationError
 from game_config import load_game_settings
 from game_service import ensure_demo
 from storage import StorageError
-from mechanics3.repository import ActionRepository, DEFAULT_PACK
+from mechanics.repository import ActionRepository, DEFAULT_PACK
 
 
 def backup_database(db_path: Path) -> Path:

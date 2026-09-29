@@ -6,9 +6,9 @@ from types import SimpleNamespace
 import pytest
 from config import Settings
 from chat_service import ChatService
-from agents4.models import Intent
-from rules7b.roles import GameMaster
-from rules7b.models import GMDecision, RuleNeed
+from agents.models import Intent
+from rules.roles import GameMaster
+from rules.models import GMDecision, RuleNeed
 from .conftest import ROOT, begin, drive
 
 

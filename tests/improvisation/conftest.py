@@ -5,10 +5,10 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from config import Settings
 from chat_service import ChatService
-from story5.roles import StoryKeeper
-from improv6.roles import GameMaster, Narrator, Improviser
-from improv6.nodes import RecoveryNodes
-from improv6.repository import ImprovisationRepository
+from story.roles import StoryKeeper
+from improvisation.roles import GameMaster, Narrator, Improviser
+from improvisation.nodes import RecoveryNodes
+from improvisation.repository import ImprovisationRepository
 
 
 @pytest.fixture(autouse=True)

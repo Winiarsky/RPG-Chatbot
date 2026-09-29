@@ -5,14 +5,14 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from config import Settings
 from chat_service import ChatService
-from library7a.settings import LibrarySettings
-from library7a.store import LibraryStore
-from library7a.importers import load_manifest
-from rules7b.repository import RulesRepository
-from rules7b.nodes import RulesNodes
-from rules7b.roles import GameMaster, Improviser
-from story5.roles import StoryKeeper
-from improv6.roles import Narrator
+from library.settings import LibrarySettings
+from library.store import LibraryStore
+from library.importers import load_manifest
+from rules.repository import RulesRepository
+from rules.nodes import RulesNodes
+from rules.roles import GameMaster, Improviser
+from story.roles import StoryKeeper
+from improvisation.roles import Narrator
 from smoke import TestConsultant as Consultant
 
 
@@ -31,7 +31,7 @@ def env(monkeypatch, tmp_path):
 def library(tmp_path):
     cfg = LibrarySettings(db_path=tmp_path/'library.sqlite3')
     store = LibraryStore(cfg.db_path, create=True)
-    _, chunks, _ = load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+    _, chunks, _ = load_manifest(ROOT/'materials/starter/manifest.yaml')
     store.import_chunks(chunks, reviewed=True)
     return store, cfg
 
@@ -67,7 +67,7 @@ def begin(repo, nodes, text, tid='turn'):
 
 def drive(nodes, state, start='interpret'):
     """Testuje węzły i routing, nie udaje wykonania rzeczywistego LangGraph."""
-    from rules7b.routing import after_intent, after_recovery, after_consult, after_prepared
+    from rules.routing import after_intent, after_recovery, after_consult, after_prepared
     routers = {'interpret': after_intent, 'recover': after_recovery, 'consult_rules': after_consult,
         'prepare': after_prepared, 'reconsider': lambda s: s['rules_after'],
         'narrate': lambda s: 'await_narrator' if s.get('narration_error') else 'finish',

@@ -1,10 +1,10 @@
 import pytest
 from chat_service import ChatError
-from library7a.librarian import Librarian
-from library7a.search import Retriever
-from rules7b.models import RuleNeed
-from rules7b.repository import RulesRepository
-from rules7b.nodes import RulesNodes
+from library.librarian import Librarian
+from library.search import Retriever
+from rules.models import RuleNeed
+from rules.repository import RulesRepository
+from rules.nodes import RulesNodes
 from .conftest import begin, drive
 
 
@@ -174,8 +174,8 @@ def test_world_change_during_lookup_does_not_execute_action(repo, nodes, consult
 
 
 def test_clarification_after_consultation_is_not_lost(repo, nodes):
-    from agents4.models import Intent
-    from improv6.roles import plan
+    from agents.models import Intent
+    from improvisation.roles import plan
     nodes.gm.after_rules = lambda *args: Intent(kind='unsupported', definition_id=None,
         target_id=None, message='Potrzeba dopasowania.')
     nodes.improviser.after_rules = lambda *args: plan('clarify', 'Którego sposobu otwarcia chcesz spróbować?')

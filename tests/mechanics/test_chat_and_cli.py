@@ -3,8 +3,8 @@ import os
 import subprocess
 import sys
 
-from mechanics3.chat import public_context3
-from mechanics3.repository import ActionRepository
+from mechanics.chat import public_context3
+from mechanics.repository import ActionRepository
 from .conftest import ROOT, prepare
 
 

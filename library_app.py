@@ -1,9 +1,9 @@
 """Standalone Streamlit workbench. No imports of game state, graph, or campaign DB."""
 import streamlit as st
-from library7a.settings import load_library_settings,ROOT
-from library7a.store import LibraryStore
-from library7a.search import Retriever
-from library7a.librarian import Librarian
+from library.settings import load_library_settings,ROOT
+from library.store import LibraryStore
+from library.search import Retriever
+from library.librarian import Librarian
 
 
 def display_hit(chunk):
@@ -55,10 +55,10 @@ def main():
                 raise ValueError('Zaznacz zgodę na API embeddingów albo wybierz lexical.')
             embedder=writer=None
             if mode=='hybrid':
-                from library7a.providers import OpenAIEmbedder
+                from library.providers import OpenAIEmbedder
                 embedder=OpenAIEmbedder(settings)
             if generate:
-                from library7a.providers import LangChainWriter
+                from library.providers import LangChainWriter
                 writer=LangChainWriter(settings)
             with st.spinner('Wyszukuję i sprawdzam źródła…'):
                 result=Librarian(Retriever(store,settings,embedder),writer).consult(question,mode,generate)

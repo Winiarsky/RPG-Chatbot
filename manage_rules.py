@@ -3,12 +3,12 @@ import argparse
 import importlib.metadata as metadata
 import json
 from uuid import uuid4
-from agents4.runtime import safe_error
+from agents.runtime import safe_error
 from game_config import load_game_settings
-from library7a.settings import load_library_settings
-from library7a.store import LibraryStore
-from rules7b.repository import RulesRepository
-from rules7b.settings import load_integration_settings
+from library.settings import load_library_settings
+from library.store import LibraryStore
+from rules.repository import RulesRepository
+from rules.settings import load_integration_settings
 
 
 def parser():
@@ -70,7 +70,7 @@ def main(argv=None):
             print('Klient zachowany: chat_service.py. Nie wypisano klucza i nie wywołano API.')
             return 1 if missing else 0
         if args.command == 'capabilities':
-            from rules7b.capabilities import CAPABILITIES
+            from rules.capabilities import CAPABILITIES
             print(json.dumps({k: sorted(v) for k, v in CAPABILITIES.items()}, ensure_ascii=False, indent=2))
             print('To zakres implementacji, nie wszystkie dozwolone działania D&D. Help i dynamiczne efekty nie są dodawane przez RAG.')
             return 0
@@ -100,7 +100,7 @@ def main(argv=None):
             print(json.dumps(records, ensure_ascii=False, indent=2))
         else:
             from config import load_settings
-            from rules7b.runtime import make_controller
+            from rules.runtime import make_controller
             ctl = make_controller(repo, load_settings(), lib, integration)
             if args.command == 'say':
                 view = ctl.start(args.campaign, args.text, turn_id=args.turn)

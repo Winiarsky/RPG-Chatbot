@@ -3,13 +3,13 @@ from uuid import uuid4
 import streamlit as st
 from config import load_settings
 from game_config import load_game_settings
-from agents4.runtime import safe_error
-from rules7b.repository import RulesRepository
-from rules7b.runtime import make_controller
-from rules7b.ui import evidence_panel
-from library7a.settings import load_library_settings
-from library7a.store import LibraryStore
-from rules7b.settings import load_integration_settings
+from agents.runtime import safe_error
+from rules.repository import RulesRepository
+from rules.runtime import make_controller
+from rules.ui import evidence_panel
+from library.settings import load_library_settings
+from library.store import LibraryStore
+from rules.settings import load_integration_settings
 
 
 def perform(operation, *args, **kwargs):

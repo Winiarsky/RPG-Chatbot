@@ -3,7 +3,7 @@ import pytest
 from game_config import GameSettings
 from game_service import ensure_demo
 from scenario_loader import load_templates
-from mechanics3.repository import ActionRepository
+from mechanics.repository import ActionRepository
 
 ROOT = Path(__file__).resolve().parents[2]
 

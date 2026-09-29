@@ -2,9 +2,9 @@ from pathlib import Path
 import pytest
 from game_config import GameSettings
 from game_service import ensure_demo
-from agents4.repository import GraphRepository
-from agents4.nodes import Nodes
-from agents4.roles import GameMaster, Narrator
+from agents.repository import GraphRepository
+from agents.nodes import Nodes
+from agents.roles import GameMaster, Narrator
 from chat_service import ChatService
 from config import Settings
 

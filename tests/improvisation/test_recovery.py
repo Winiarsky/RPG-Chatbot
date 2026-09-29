@@ -3,8 +3,8 @@ from types import SimpleNamespace
 import pytest
 from pydantic import ValidationError
 from chat_service import ChatError
-from improv6.models import RecoveryPlan
-from improv6.roles import plan
+from improvisation.models import RecoveryPlan
+from improvisation.roles import plan
 from .conftest import begin, finish_knock
 
 

@@ -4,8 +4,8 @@ pytest.importorskip('langchain_core')
 from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from types import SimpleNamespace
 from dataclasses import replace
-from library7a.providers import LangChainWriter
-from library7a.search import Retriever
+from library.providers import LangChainWriter
+from library.search import Retriever
 
 
 def test_real_langchain_message_adapter(store,cfg):

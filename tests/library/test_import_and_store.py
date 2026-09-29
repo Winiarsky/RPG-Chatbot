@@ -3,10 +3,10 @@ import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 import pytest
 import yaml
-from library7a.models import Source,Section
-from library7a.importers import load_manifest,markdown_sections,paragraphs,digest
-from library7a.settings import ROOT
-from library7a.store import LibraryStore,normalize_vector
+from library.models import Source,Section
+from library.importers import load_manifest,markdown_sections,paragraphs,digest
+from library.settings import ROOT
+from library.store import LibraryStore,normalize_vector
 
 
 def custom_manifest(tmp_path,text='# Rule\n\nThis is a clearly marked artificial testing rule.',docid='custom',ruleset='test_only'):
@@ -19,7 +19,7 @@ def custom_manifest(tmp_path,text='# Rule\n\nThis is a clearly marked artificial
 
 
 def test_starter_hash_and_exact_pages():
-    m,chunks,w=load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+    m,chunks,w=load_manifest(ROOT/'materials/starter/manifest.yaml')
     assert len(chunks)==16 and not w
     assert len({c.chunk_id for c in chunks})==16
     assert all(c.file_sha256==m.sha256 and len(c.text)<=3500 for c in chunks)
@@ -29,7 +29,7 @@ def test_starter_hash_and_exact_pages():
 
 
 def test_idempotent_import(store):
-    _,chunks,_=load_manifest(ROOT/'materials7a/starter/manifest.yaml')
+    _,chunks,_=load_manifest(ROOT/'materials/starter/manifest.yaml')
     assert store.import_chunks(chunks,reviewed=True)=='unchanged'
     assert len(store.documents())==1
     assert len(store.chunks(chunks[0].source.ruleset_id))==16
@@ -188,7 +188,7 @@ def test_pdf_with_text_and_blank_page(tmp_path,monkeypatch,change_after_read):
     m=yaml.safe_load(path.read_text());m.update(file='rules.pdf',format='pdf');path.write_text(yaml.safe_dump(m))
     original=(tmp_path/'rules.pdf').read_bytes()
     if change_after_read:
-        import library7a.importers as importers
+        import library.importers as importers
         read_limited=importers.read_limited
         def replace_after_read(target,*args,**kwargs):
             raw=read_limited(target,*args,**kwargs)

@@ -10,7 +10,7 @@ Priorytety po przeglądzie. Każdy punkt ma kryterium zakończenia; rozszerzenia
 
 ## P2 — utrzymanie i skala
 
-- [ ] **Pakiety według odpowiedzialności.** Zastąpić numerowane nazwy modułów semantycznymi nazwami i ograniczyć głęboki łańcuch dziedziczenia. Warunek: stare bazy i aktywne checkpointy nadal się wznawiają albo mają jawną migrację.
+- [ ] **Prostsze połączenie warstw silnika.** Ograniczyć głęboki łańcuch dziedziczenia kontrolerów i repozytoriów, wydzielając współpracujące komponenty o jawnych odpowiedzialnościach. Warunek: stare bazy i aktywne checkpointy nadal się wznawiają albo mają jawną migrację.
 - [ ] **Jedno CLI serwisowe.** Przenieść potrzebne komendy starszych `manage_*.py` do podkomend aktywnego narzędzia; zachować obsługę zakończenia starszych tur przed usunięciem dawnych entrypointów.
 - [ ] **Weryfikacja korpusu PDF.** Ręcznie sprawdzić pełne materiały, tabele, strony i metadane przed zatwierdzeniem. Dodać przykłady trudnych ekstrakcji do testów.
 - [ ] **Budżet kontekstu.** Liczyć całe wejście modelu, łącznie z JSON, promptem i metadanymi; przetestować odrzucenie lub skrócenie zbyt dużego kontekstu.

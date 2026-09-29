@@ -14,10 +14,10 @@ def main():
         return 2
     from config import Settings
     from chat_service import ChatService
-    from story5.roles import StoryKeeper
-    from improv6.roles import GameMaster, Narrator, Improviser
-    from improv6.repository import ImprovisationRepository
-    from improv6.runtime import RecoveryController
+    from story.roles import StoryKeeper
+    from improvisation.roles import GameMaster, Narrator, Improviser
+    from improvisation.repository import ImprovisationRepository
+    from improvisation.runtime import RecoveryController
     root = Path(__file__).resolve().parents[2]
     for key in ('LANGSMITH_TRACING', 'LANGCHAIN_TRACING', 'LANGCHAIN_TRACING_V2'):
         os.environ[key] = 'false'

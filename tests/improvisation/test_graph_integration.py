@@ -2,7 +2,7 @@ import pytest
 pytest.importorskip('langgraph.graph')
 pytest.importorskip('langgraph.checkpoint.sqlite')
 from .smoke import main
-from improv6.runtime import RecoveryController
+from improvisation.runtime import RecoveryController
 from .conftest import knock
 
 

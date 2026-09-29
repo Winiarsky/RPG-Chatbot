@@ -4,10 +4,10 @@ from pathlib import Path
 import pytest
 import yaml
 from storage import RequestConflict
-from mechanics3.repository import ActionError
-from agents4.repository import WorkflowError
-from story5.repository import StoryRepository, StoryError
-from improv6.repository import ImprovisationRepository, DEFAULT_PROFILE
+from mechanics.repository import ActionError
+from agents.repository import WorkflowError
+from story.repository import StoryRepository, StoryError
+from improvisation.repository import ImprovisationRepository, DEFAULT_PROFILE
 from .conftest import ROOT, knock
 
 

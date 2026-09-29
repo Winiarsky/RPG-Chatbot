@@ -4,13 +4,13 @@ import importlib.metadata as metadata
 import json
 from pathlib import Path
 from uuid import uuid4
-from agents4.runtime import safe_error
+from agents.runtime import safe_error
 from game_config import load_game_settings
 from scenario_loader import load_yaml
-from story5.models import StoryBook
-from story5.repository import DEFAULT_STORY
-from improv6.models import ImprovisationProfile
-from improv6.repository import ImprovisationRepository, DEFAULT_PROFILE
+from story.models import StoryBook
+from story.repository import DEFAULT_STORY
+from improvisation.models import ImprovisationProfile
+from improvisation.repository import ImprovisationRepository, DEFAULT_PROFILE
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
                     print(package + ':', metadata.version(package))
                 except metadata.PackageNotFoundError:
                     print(package + ': BRAK')
-            from story5.roles import mode5
+            from story.roles import mode5
             print('Format decyzji:', mode5())
             print('Zachowano klienta z chat_service.py; użyj swojej poprawki use_responses_api=True.')
             print('Nie wywołano API ani nie wypisano sekretów.')

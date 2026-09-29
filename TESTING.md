@@ -38,17 +38,21 @@ Niektóre integracje stosują `importorskip`, więc same pominięte testy nie po
 
 ## Wyniki lokalnej weryfikacji — 2026-09-29
 
+Wyniki dotyczą układu z pakietami `agents`, `mechanics`, `story`, `improvisation`, `rules` i `library` oraz wspólnymi katalogami zasobów.
+
 | Sprawdzenie | Wynik |
 | --- | --- |
-| Pełny przebieg pytest po konsolidacji | **504 passed**, 425,52 s; bez pominiętych testów |
-| Regresja `tests/state tests/mechanics tests/core` po wycięciu martwych adapterów | **166 passed** |
-| `tests/state` po usunięciu starego promptu | **42 passed** |
-| `tests/rules/test_adapters_cli.py tests/library/test_cli_and_adapters.py` po końcowych zmianach diagnostyki | **24 passed**, 42,50 s |
+| `python -m pytest -q --durations=10 --tb=short` | **493 passed**, 426,89 s; bez pominiętych testów |
+| Wznowienie checkpointów utworzonych przez kod sprzed reorganizacji | **4/4 przypadki zakończone poprawnie** |
 | `python smoke.py` | Kod 0; prawdziwy LangGraph, SQLite, biblioteka i restart rzutu |
 | Kompilacja modułów i `git diff --check` | Bez błędów |
 | `python -m pip check` | Kod 0, brak niezgodnych zależności |
 | `python manage_rules.py doctor` | Kod 0; wszystkie wymagane pakiety dostępne |
 
-Końcowa kolekcja obejmuje **493 testy**. Pełny przebieg zebrał jeszcze 12 testów później usuniętych adapterów; ostatnia zmiana dodała drugi wariant testu diagnostyki. Zmienione po kolekcji obszary sprawdzono ponownie grupami wskazanymi powyżej.
+Test zgodności uruchomił kod z commita `2a2c6b0` w oddzielnym katalogu i utworzył tymczasowe zapisy. Następnie kod z nowymi nazwami pakietów wznowił: rzut z zapisaną konsultacją, potwierdzenie fabularne, narrację po rozstrzygniętym rzucie oraz nieudaną konsultację zasad. Zachowano identyfikatory oczekujących decyzji. Powtórne wznowienie nie zmieniało świata, historii ani rozstrzygnięć; zapisane konsultacje nie były wykonywane ponownie.
+
+W 37 checkpointach i 206 zapisach pośrednich starego kodu nie znaleziono ścieżek dawnych modułów. Stan grafu wykorzystuje słowniki i wartości podstawowe, dlatego przeniesienie pakietów nie wymaga aliasów dawnych importów. Nazwy tabel, wersje grafów, prefiksy wątków i podpisy danych pozostają częścią zachowanego formatu zapisu.
+
+Porównanie z bazowym commitem potwierdziło obecność wszystkich 139 plików pod ich docelowymi ścieżkami, niezmienioną treść zasobów YAML/JSON i brak starych importów. Nie odczytywano ani nie zmieniano zapisów użytkownika przy teście zgodności.
 
 Zastane środowisko `.venv` zgłasza przy pip ostrzeżenie o niepoprawnej dystrybucji `~ip`; nie blokuje kontroli zależności i nie jest częścią repozytorium. Nie przebudowywano tego lokalnego środowiska ani nie wykonywano instalacji na czystym systemie. Zakresy wersji pozostają zgodne z TODO dotyczącym lockfile.

@@ -15,7 +15,7 @@ def doctor():
             print(f'{name}: BRAK')
     from config import load_settings
     from game_config import load_game_settings
-    from agents4.roles import intent_mode
+    from agents.roles import intent_mode
     settings = load_settings()
     print('Provider:', settings.provider, '| model:', settings.model, '| Intent:', intent_mode())
     print('Klucz ustawiony:', bool(settings.api_key))
@@ -51,8 +51,8 @@ def main(argv=None):
         from config import load_settings
         from game_config import load_game_settings
         from game_service import ensure_demo
-        from agents4.repository import GraphRepository
-        from agents4.runtime import make_controller
+        from agents.repository import GraphRepository
+        from agents.runtime import make_controller
         settings = load_game_settings()
         repo = GraphRepository(settings.db_path)
         if args.campaign == 'demo':
@@ -82,7 +82,7 @@ def main(argv=None):
         print(json.dumps(output, ensure_ascii=False, indent=2))
         return 0
     except Exception as exc:
-        from agents4.runtime import safe_error
+        from agents.runtime import safe_error
         print('Błąd:', safe_error(exc))
         return 1
 

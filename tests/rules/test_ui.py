@@ -5,8 +5,8 @@ pytest.importorskip('langgraph.graph')
 pytest.importorskip('langgraph.checkpoint.sqlite')
 from streamlit.testing.v1 import AppTest
 from chat_service import ChatError
-from improv6.roles import Narrator
-from rules7b.repository import RulesRepository
+from improvisation.roles import Narrator
+from rules.repository import RulesRepository
 from .conftest import ROOT
 
 

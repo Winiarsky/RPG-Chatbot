@@ -7,8 +7,8 @@
 # Local saves, imported library, backups and locks
 /data/
 .rpg4_locks/
-/materials7a/full/
-/evals7a/*REPORT*.json
+/materials/full/
+/evals/*REPORT*.json
 *.sqlite3
 *.sqlite3-*
 *.sqlite

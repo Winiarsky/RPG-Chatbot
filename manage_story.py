@@ -4,11 +4,11 @@ import importlib.metadata as metadata
 import json
 from pathlib import Path
 from uuid import uuid4
-from agents4.runtime import safe_error
+from agents.runtime import safe_error
 from game_config import load_game_settings
 from scenario_loader import load_yaml
-from story5.models import StoryBook
-from story5.repository import StoryRepository, DEFAULT_STORY
+from story.models import StoryBook
+from story.repository import StoryRepository, DEFAULT_STORY
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
                     print(package + ':', metadata.version(package))
                 except metadata.PackageNotFoundError:
                     print(package + ': BRAK')
-            from story5.roles import mode5
+            from story.roles import mode5
             print('Tryb decyzji:', mode5())
             print('Klient LLM pochodzi z twojego chat_service.py. Zachowaj use_responses_api=True.')
             print('Nie wywołano API i nie odczytano wartości klucza.')

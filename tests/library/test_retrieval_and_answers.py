@@ -1,12 +1,12 @@
 from dataclasses import replace
 from types import SimpleNamespace
 import pytest
-from library7a.models import AnswerDraft,Claim,EvidenceRef
-from library7a.settings import ROOT
-from library7a.search import Retriever,build_embeddings,query_tokens
-from library7a.librarian import Librarian,EvidenceError,validate_evidence,select_context,render_text
-from library7a.evaluation import evaluate_retrieval
-from library7a.importers import canonical_hash
+from library.models import AnswerDraft,Claim,EvidenceRef
+from library.settings import ROOT
+from library.search import Retriever,build_embeddings,query_tokens
+from library.librarian import Librarian,EvidenceError,validate_evidence,select_context,render_text
+from library.evaluation import evaluate_retrieval
+from library.importers import canonical_hash
 
 
 class FakeEmbeddings:
@@ -187,7 +187,7 @@ def test_corpus_review_revoked_during_search_rejected(store,cfg,generate):
 
 
 def test_eval_honest_denominators(store,cfg):
-    result=evaluate_retrieval(Retriever(store,cfg),ROOT/'evals7a/cases.json')
+    result=evaluate_retrieval(Retriever(store,cfg),ROOT/'evals/cases.json')
     assert result['positive_cases']==27 and result['negative_cases']==3
     assert result['all_expected_at_k']>=0.85
     assert all(c['all_expected_at_k'] is None for c in result['cases'][-3:])

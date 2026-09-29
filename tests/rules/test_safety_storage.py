@@ -3,17 +3,17 @@ import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
 import pytest
-from agents4.models import Intent
-from agents4.repository import WorkflowError
-from improv6.repository import ImprovisationRepository
-from library7a.models import LibraryAnswer
-from library7a.store import LibraryStore
-from rules7b.models import RuleNeed, GMDecision
-from rules7b.settings import IntegrationSettings
-from rules7b.library import verify_answer, LocalConsultant
-from rules7b.repository import RulesRepository
-from rules7b.runtime import validate_rules_resume
-from rules7b.capabilities import missing
+from agents.models import Intent
+from agents.repository import WorkflowError
+from improvisation.repository import ImprovisationRepository
+from library.models import LibraryAnswer
+from library.store import LibraryStore
+from rules.models import RuleNeed, GMDecision
+from rules.settings import IntegrationSettings
+from rules.library import verify_answer, LocalConsultant
+from rules.repository import RulesRepository
+from rules.runtime import validate_rules_resume
+from rules.capabilities import missing
 from .conftest import ROOT, begin, drive
 
 
@@ -66,7 +66,7 @@ def test_local_consultant_offline(library):
 
 
 def test_missing_library_is_not_created(tmp_path):
-    from library7a.settings import LibrarySettings
+    from library.settings import LibrarySettings
     cfg = LibrarySettings(db_path=tmp_path/'missing.sqlite3')
     c = LocalConsultant(cfg, IntegrationSettings(), 'mock')
     with pytest.raises(ValueError, match='Brak bazy'):

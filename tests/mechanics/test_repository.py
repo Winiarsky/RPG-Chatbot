@@ -4,7 +4,7 @@ from pathlib import Path
 import sqlite3
 import pytest
 from storage import GameRepository, RequestConflict, RevisionConflict, StorageError
-from mechanics3.repository import ActionRepository, ActionError
+from mechanics.repository import ActionRepository, ActionError
 from manage_checks import backup_database
 from .conftest import prepare
 

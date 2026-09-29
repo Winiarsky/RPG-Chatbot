@@ -1,8 +1,8 @@
 import pytest
 from pydantic import ValidationError
 from schemas import CharacterState
-from mechanics3.engine import prepare_check, resolve_check
-from mechanics3.models import CheckSpec, CheckPlan
+from mechanics.engine import prepare_check, resolve_check
+from mechanics.models import CheckSpec, CheckPlan
 
 
 def spec(**kwargs):

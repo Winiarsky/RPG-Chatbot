@@ -2,8 +2,8 @@ from types import SimpleNamespace
 import pytest
 from chat_service import ChatService, ChatError
 from config import Settings
-from improv6.roles import Improviser, plan
-from improv6.routing import route_intent, route_prepared, route_recovery
+from improvisation.roles import Improviser, plan
+from improvisation.routing import route_intent, route_prepared, route_recovery
 
 
 @pytest.mark.parametrize('mode',['function_calling','json_text'])

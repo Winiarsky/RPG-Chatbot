@@ -7,16 +7,20 @@ Przegląd lokalnego kodu i regresji wykonany podczas porządkowania projektu. To
 | Warstwa | Odpowiedzialność |
 | --- | --- |
 | `app.py`, `manage_rules.py` | Bieżący interfejs gry i sterowanie tym samym kontrolerem |
-| `rules7b/` | Integracja konsultacji, audyt źródeł i ograniczenie obsługiwanych reguł |
-| `improv6/` | Dopasowanie swobodnego zamiaru do dozwolonych interakcji |
-| `story5/` | Sceny, wiedza, rozmowy NPC i wybór zatwierdzonych odpowiedzi |
-| `agents4/` | Przebieg tury, checkpointy, wznowienia i role bazowe |
-| `mechanics3/` | Przygotowanie prób, rzuty i deterministyczne skutki |
+| `rules/` | Integracja konsultacji, audyt źródeł i ograniczenie obsługiwanych reguł |
+| `improvisation/` | Dopasowanie swobodnego zamiaru do dozwolonych interakcji |
+| `story/` | Sceny, wiedza, rozmowy NPC i wybór zatwierdzonych odpowiedzi |
+| `agents/` | Przebieg tury, checkpointy, wznowienia i role bazowe |
+| `mechanics/` | Przygotowanie prób, rzuty i deterministyczne skutki |
 | `storage.py`, `schemas.py`, `public_context.py` | SQLite, walidacja danych i projekcja publicznego stanu |
-| `library7a/`, `library_app.py`, `manage_library.py` | Import, przegląd, wyszukiwanie i kontrola cytowań w osobnej bazie |
+| `library/`, `library_app.py`, `manage_library.py` | Import, przegląd, wyszukiwanie i kontrola cytowań w osobnej bazie |
 | `chat_service.py`, `config.py` | Transport modelu, konfiguracja i maskowanie diagnostyki |
+| `rules/definitions/`, `scenarios/` | Definicje działań, profile improwizacji i scenariusze przygód |
+| `materials/`, `evals/`, `tests/` | Źródła biblioteki, zestawy ewaluacyjne i testy systemu |
 
-Kontrolery i repozytoria dziedziczą zachowanie wcześniejszych warstw. Numery w nazwach są historyczne, ale kod pozostaje używany. Zmiana ich nazw wymaga osobnej migracji importów i sprawdzenia istniejących checkpointów. Usunięto natomiast zastąpione interfejsy, dokumentację dystrybucji etapów, stare sumy archiwów i nadmiarowe skrypty smoke oraz nieużywane adaptery i prompty dawnych interfejsów czatu.
+Pakiety oraz zasoby mają nazwy odpowiadające ich odpowiedzialnościom. Definicje działań i improwizacji są wspólnie w `rules/definitions/`, a scenariusze w `scenarios/`. Importy i ścieżki zasobów wskazują na tę strukturę. Zachowano historyczne nazwy tabel, prefiksy checkpointów i zmienne środowiskowe, a także domyślną ścieżkę `data/library7a.sqlite3`, aby samo uporządkowanie katalogów nie wymagało zmiany zapisów lub lokalnej konfiguracji.
+
+Kontrolery i repozytoria nadal dziedziczą zachowanie wcześniejszych warstw. Uproszczenie tego łańcucha pozostaje osobnym zadaniem. Usunięto zastąpione interfejsy, dokumentację dystrybucji etapów, stare sumy archiwów i nadmiarowe skrypty smoke oraz nieużywane adaptery i prompty dawnych interfejsów czatu.
 
 ## Co działa dobrze
 

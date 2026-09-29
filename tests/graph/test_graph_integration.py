@@ -3,8 +3,8 @@ import pytest
 pytest.importorskip('langgraph', reason='Integracja wymaga langgraph z requirements.txt.')
 pytest.importorskip('langgraph.checkpoint.sqlite', reason='Integracja wymaga langgraph-checkpoint-sqlite.')
 from chat_service import ChatError
-from agents4.runtime import GraphController
-from agents4.repository import GraphRepository, WorkflowError
+from agents.runtime import GraphController
+from agents.repository import GraphRepository, WorkflowError
 
 
 def controller(repo, nodes):

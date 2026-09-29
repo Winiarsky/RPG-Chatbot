@@ -6,9 +6,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from config import Settings
 from chat_service import ChatService
-from story5.repository import StoryRepository
-from story5.roles import GameMaster, StoryKeeper, Narrator
-from story5.nodes import StoryNodes
+from story.repository import StoryRepository
+from story.roles import GameMaster, StoryKeeper, Narrator
+from story.nodes import StoryNodes
 
 
 @pytest.fixture(autouse=True)

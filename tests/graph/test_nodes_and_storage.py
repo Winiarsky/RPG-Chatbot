@@ -3,9 +3,9 @@ from concurrent.futures import ThreadPoolExecutor
 import pytest
 from chat_service import ChatError
 from storage import RequestConflict
-from agents4.models import Intent
-from agents4.repository import GraphRepository, WorkflowError
-from agents4.runtime import GraphController
+from agents.models import Intent
+from agents.repository import GraphRepository, WorkflowError
+from agents.runtime import GraphController
 from tests.graph.conftest import begin, resolve
 
 

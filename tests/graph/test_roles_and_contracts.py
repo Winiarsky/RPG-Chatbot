@@ -4,9 +4,9 @@ import pytest
 from pydantic import ValidationError
 from config import Settings
 from chat_service import ChatService, ChatError
-from agents4.models import Intent, RollDecision
-from agents4.roles import GameMaster, Narrator, parse_intent
-from agents4.runtime import validate_resume, GraphController
+from agents.models import Intent, RollDecision
+from agents.roles import GameMaster, Narrator, parse_intent
+from agents.runtime import validate_resume, GraphController
 
 CATALOG = [{'definition_id': 'force_door', 'target_id': 'tower_door', 'label': 'Wyważ drzwi'},
            {'definition_id': 'observe_scene', 'target_id': 'tower_entrance', 'label': 'Rozejrzyj się'}]

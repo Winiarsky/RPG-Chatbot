@@ -2,6 +2,27 @@
 
 Lokalny prototyp mistrza gry: Streamlit, LangGraph i SQLite. Model rozpoznaje zamiar i tworzy narrację; silnik sprawdza dozwolone działania, rzuty i skutki. Bibliotekarz wyszukuje zasady w osobnej bazie i pokazuje źródła. Interfejs oraz przykładowa przygoda są po polsku.
 
+## Struktura projektu
+
+Kod jest podzielony według odpowiedzialności, bez numerów dawnych etapów w nazwach pakietów:
+
+```text
+agents/          role modelu i bazowy przebieg tury w LangGraph
+mechanics/       mechanika rzutów i deterministyczne skutki
+story/           sceny, wiedza i rozmowy NPC
+improvisation/   dopasowanie deklaracji do dozwolonych interakcji
+rules/          integracja gry z bibliotekarzem i audyt źródeł
+  definitions/  katalog działań oraz profil improwizacji w YAML
+library/        import, przegląd i wyszukiwanie materiałów
+scenarios/      scenariusze przygód w YAML
+characters/     szablony postaci w YAML
+materials/      materiały biblioteki i przykładowe manifesty
+evals/          zestawy ewaluacyjne bibliotekarza
+tests/          wspólne testy wszystkich warstw
+```
+
+`app.py` uruchamia grę, a `library_app.py` osobny interfejs biblioteki. Wspólne moduły w katalogu głównym odpowiadają m.in. za konfigurację (`config.py`), transport modelu (`chat_service.py`), zapis stanu (`storage.py`) i schematy danych (`schemas.py`). Kontrolery i repozytoria nadal dziedziczą zachowanie poszczególnych warstw; dalsze uproszczenie tego połączenia opisuje [TODO.md](TODO.md).
+
 ## Uruchomienie
 
 Sprawdzane środowisko: Python 3.12. Uruchamiaj polecenia z katalogu projektu.
@@ -45,7 +66,7 @@ Pakiet startowy zawiera 16 wybranych sekcji SRD 5.2.1, a nie cały podręcznik. 
 python manage_library.py documents
 python manage_library.py search 'Jak działa przewaga?'
 python manage_library.py ask 'Jak działa przewaga?'
-python manage_library.py import materials7a/examples/manifest.yaml
+python manage_library.py import materials/examples/manifest.yaml
 # Zatwierdź dopiero po sprawdzeniu treści, wersji i metadanych:
 python manage_library.py review my_rules_example --approve --confirm
 ```
@@ -87,7 +108,7 @@ Zastąp `ID` identyfikatorem własnej kampanii; dla starszych kampanii fabularny
 
 - Główna gra uruchamia się teraz przez `app.py`, a biblioteka przez `library_app.py`. Usunięto historyczne interfejsy etapów i instrukcje nakładania archiwów ZIP.
 - Wszystkie zależności są w `requirements.txt`. Testy warstw znajdują się we wspólnym katalogu `tests/` i są uruchamiane domyślnie.
-- Nazwy tabel, identyfikatory kampanii, prefiksy checkpointów i zmienne środowiskowe są zachowane. Numerowane pakiety Pythona nadal tworzą aktywny łańcuch silnika; ich usunięcie uszkodziłoby bieżącą grę.
+- Pakiety i katalogi zasobów mają nazwy opisujące ich rolę. Importy w kodzie, testach i narzędziach korzystają z nowej struktury. Nazwy tabel, identyfikatory kampanii, prefiksy checkpointów i zmienne środowiskowe są zachowane dla zgodności zapisów oraz konfiguracji. Domyślna baza biblioteki pozostaje w `data/library7a.sqlite3`.
 - Poprawka importera ma wersję `paragraphs-v2`. Jeżeli `manage_library.py init` zgłosi konflikt starego startera, jawnie zaktualizuj go przez `python manage_library.py init --replace`. To zastępuje tylko starter; inne dokumenty pozostają. Wcześniej skopiuj bazę biblioteki przy zatrzymanych zapisach. Stare embeddingi zastępowanego dokumentu są usuwane i wymagają odbudowy.
 - Własny dokument aktualizuj przez `import MANIFEST --replace`, ponowny przegląd i zatwierdzenie. Zapisane konsultacje zachowują historyczny snapshot źródeł.
 

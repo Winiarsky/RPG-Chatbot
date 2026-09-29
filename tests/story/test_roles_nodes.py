@@ -3,10 +3,10 @@ from types import SimpleNamespace
 import pytest
 from chat_service import ChatService, ChatError
 from config import Settings
-from agents4.models import Intent
-from story5.models import BeatSelection
-from story5.roles import GameMaster, StoryKeeper, Narrator, StructuredAdapter, ask_schema
-from story5.runtime import validate_story_resume, StoryController
+from agents.models import Intent
+from story.models import BeatSelection
+from story.roles import GameMaster, StoryKeeper, Narrator, StructuredAdapter, ask_schema
+from story.runtime import validate_story_resume, StoryController
 from .conftest import begin, open_and_enter, act
 
 
